@@ -3,7 +3,10 @@ import '../../assets/styles/styles.css';
 import { Link, Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
+// universal 
+const cookies = new Cookies();
 
 export const Header = () => {
     const [username, setUsername] = useState([]);
@@ -23,6 +26,10 @@ export const Header = () => {
         })
         .then((res)=>{
             console.log('res=>',res);
+            cookies.set('LoggedInToken', true);
+            window.location.href="/dashboard";
+            setIsLoggedIn(true);
+
         })
         .catch((error)=>{
             console.log('error', error.response)
