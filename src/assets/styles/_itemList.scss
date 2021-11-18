@@ -1,0 +1,43 @@
+.itemList {
+    width: 70%;
+    border: 2px solid $darkBlue;
+    padding:0.5rem;
+    margin:1rem auto;
+    height: 100vh;
+    background-color: grey;
+    text-align: center;
+    
+    
+    &__gridContainer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap:3rem;        
+        border:1px solid red;
+        padding: 1rem;
+    
+    }
+    &__item {
+        border-radius: 5px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        transition: all 150ms ease-in-out;
+        &:hover {
+         transform: scale(1.1);
+
+        }
+        border: 1px solid black;
+    }
+    &__image {
+        height: 12.5rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    }
+    &__textContents {
+        padding: 1.875rem;
+        padding-bottom: 2.5rem;
+        background-color: $white;
+       
+      }
+
+}

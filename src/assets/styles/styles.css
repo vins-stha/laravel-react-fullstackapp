@@ -1,0 +1,106 @@
+.header {
+  width: 70%;
+  height: 10%;
+  border: 1px solid red;
+  margin: 0 auto;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header-logo {
+  width: 20%;
+  border: 1px solid #2d314d;
+}
+
+.header-registration__links {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-right: 0rem;
+  padding: 0.25rem;
+}
+
+.header-registration__links__forgot {
+  margin-right: 1rem;
+}
+
+.header-registration__login {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.25rem;
+}
+
+.header-registration__login input, .header-registration__login button {
+  outline: 80%;
+  padding: 0.45rem;
+  border: none;
+  background-color: white;
+  margin-right: 0.25rem;
+  border-radius: 6px !important;
+}
+
+@media only screen and (max-width: 1024px) {
+  .header {
+    width: 100%;
+  }
+  .header nav {
+    margin: 0 5%;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .header {
+    width: 99%;
+  }
+  .header nav {
+    margin: 0 5%;
+  }
+}
+
+.itemList {
+  width: 70%;
+  border: 2px solid #2d314d;
+  padding: 0.5rem;
+  margin: 1rem auto;
+  height: 100vh;
+  background-color: grey;
+  text-align: center;
+}
+
+.itemList__gridContainer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  border: 1px solid red;
+  padding: 1rem;
+}
+
+.itemList__item {
+  border-radius: 5px;
+  -webkit-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  border: 1px solid black;
+}
+
+.itemList__item:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.itemList__image {
+  height: 12.5rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.itemList__textContents {
+  padding: 1.875rem;
+  padding-bottom: 2.5rem;
+  background-color: white;
+}
