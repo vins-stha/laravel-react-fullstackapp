@@ -9,18 +9,18 @@ const Signup = () => {
     const avatar = { backgroundColor: 'green' }
     const [fname, setFname] = useState('');
     const [lname, setLname] = useState('');
-    const [email, setEmail] = useState('abc@abc.com');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState();
-    const [repassword, setRepassword] = useState('abc');
+    const [repassword, setRepassword] = useState('');
     const [phone, setPhone] = useState(1234);
     const [isChecked, setIsChecked] = useState(false);
     const navigate = useNavigate()
 
-    const token = document.head.querySelector('meta[name="csrf-token"]');
+    // const token = document.head.querySelector('meta[name="csrf-token"]');
 
     function handleFormSubmit(e) {
         e.preventDefault();
-        // if(password === repassword ) 
+        if(password === repassword ) 
         {
             const data = {
                 fname,
@@ -29,8 +29,8 @@ const Signup = () => {
                 password,
                 phone
             }
-            // const users = []
-            console.log('crf=', data)
+           
+          
             let result = axios.post(" http://127.0.0.1:8000/api/register", data, {
                 headers: {
                     "Content-type": "application/json",
@@ -41,7 +41,7 @@ const Signup = () => {
             })
                 .then((res) => {
                     if (res.status == 200) {
-                        // users.push(data);
+                     
                         localStorage.setItem('user', JSON.stringify(data));
                         navigate('/dashboard');               
                         
@@ -54,11 +54,13 @@ const Signup = () => {
 
             console.log(fname, lname);
         }
+        // toggle the state of checkbox 
         const handleOnChange = () => {
-            setIsChecked(!isChecked);
-            console.log('csrf', token);
-        }
+
+            setIsChecked(!isChecked);           
+        }      
     }
+
     return (
         <div>
             
@@ -69,6 +71,7 @@ const Signup = () => {
                     </Avatar>
                     <h2>Register for your search</h2>
                 </Grid>
+
                 <form onSubmit={handleFormSubmit}>
                     @csrf
                     <TextField fullWidth
@@ -79,8 +82,8 @@ const Signup = () => {
                         required={true}
                         helperText={fname === "" ? 'Empty' : ''}
 
-
                     ></TextField>
+
                     <TextField fullWidth
                         label="Lastname"
                         value={lname}
@@ -94,11 +97,12 @@ const Signup = () => {
                         required={true}
                         onChange={(e) => { setPassword(e.target.value); }} />
 
-                    {/* <TextField fullWidth 
+                    <TextField fullWidth 
                     label="Email" 
                     type="email"
                     required={true}
-                    onChange={(e)=>{setEmail(e.target.value); }}></TextField>
+                    onChange={(e)=>{setEmail(e.target.value); }}>                        
+                    </TextField>
 
                     <TextField fullWidth 
                     label="Contact number"
@@ -123,9 +127,9 @@ const Signup = () => {
                     label="I agree the terms and conditions" 
                     checked={isChecked} 
                     required={true}
-                    onChange={handleOnChange}
+                    onChange={(e)=>{setIsChecked(!isChecked);}}
                     />} 
-                    label="I agree the terms and conditions" /> */}
+                    label="I agree the terms and conditions" />
 
                     <Button className="register" type="submit" variant='contained'>Register</Button>
 

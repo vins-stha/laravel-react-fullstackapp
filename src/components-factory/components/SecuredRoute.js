@@ -1,31 +1,27 @@
-import { React, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { React, useEffect,useState } from 'react'
 import Signup from './Signup';
-import { ItemList } from './ItemList';
+import Cookies from 'universal-cookie';
 
-export const SecuredRoute = (props) => {
-    var isLoggedIn = localStorage.getItem('isLoggedIn');
-    const navigate = useNavigate();
-    let Comp = props.component;
-    useEffect(() => {
-        console.log('logged?', isLoggedIn);
-      
-    
+const cookie = new Cookies();
+
+export const SecuredRoute = ({renderThis}) => { 
+          
+    useEffect(() => {   
+
+    // check status of cookie and make it available globally ('/')  
+    if (cookie.get('isLoggedInToken') === "undefined")
+    {
+        cookie.set('isLoggedInToken', false, {path: '/'})
+    }
 
     }, [])
-    if (isLoggedIn === true) {
-        return (
-            <div>
-                <ItemList/>           
-            </div>
-        )
-    }
-   else {
-        return (
-            <div>
-               {navigate('/register')}
-            </div>
-        )
-    }
+
+    return(
+        <>  
+            {/* render the component received in props if logged in else redirect to signin          */}
+            {cookie.get('isLoggedInToken') === "true" ? renderThis :(<Signup/>)}
+        </>
+    )
+
 
 }

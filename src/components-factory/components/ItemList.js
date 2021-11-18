@@ -4,7 +4,6 @@ import React from 'react';
 
 export const ItemList = () => {
     // const item = () => items.map(item, key)
-
     return (
         <div>
             
