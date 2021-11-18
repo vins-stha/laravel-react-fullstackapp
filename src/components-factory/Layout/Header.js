@@ -53,37 +53,40 @@ export const Header = () => {
 
     return (
         <div>
-            <div className="header flex">
-                <div className="header-logo flex">Nav bar Logo</div>
-                <div className="header-registration flex-column">
-              
-                    { cookie.get('isLoggedInToken') === "true" ?
-                        <div>
-                            <div className="header-registration__links flex">
-                                <a className="header-registration__links__forgot" href="">Change  Password</a>
-                                <a href="/register" className="header-registration__links__register">Profile</a>
-                                <div className="btn btn-primary"onClick={handleLogout} className="header-registration__links__register">Logout</div>
-                            </div>
-                        </div>
-                        
-                        :
-
-                        <div>
-                            <div className="header-registration__links flex">
-                                <a className="header-registration__links__forgot" href="">Forgot Username</a>
-                                <a href="/register" className="header-registration__links__register">Register</a>
-                            </div>
-                            <div className="header-registration__login">
-                                <input placeholder="username" value={username} onChange={(e) => { setUsername(e.target.value) }} />
-                                <input placeholder="password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
-                                <div className="btn btn-primary" onClick={handleLogin}>login</div>
-                            </div>
-                        </div>
-                    }
-
+            {window.location.pathname.indexOf('admin') === 1 ? "":(
+    <div className="header flex">
+    <div className="header-logo flex">Nav bar Logo</div>
+    <div className="header-registration flex-column">
+  
+        { cookie.get('isLoggedInToken') === "true" ?
+            <div>
+                <div className="header-registration__links flex">
+                    <a className="header-registration__links__forgot" href="">Change  Password</a>
+                    <a href="/register" className="header-registration__links__register">Profile</a>
+                    <div className="btn btn-primary"onClick={handleLogout} className="header-registration__links__register">Logout</div>
                 </div>
-
             </div>
+            
+            :
+
+            <div>
+                <div className="header-registration__links flex">
+                    <a className="header-registration__links__forgot" href="">Forgot Username</a>
+                    <a href="/register" className="header-registration__links__register">Register</a>
+                </div>
+                <div className="header-registration__login">
+                    <input placeholder="username" value={username} onChange={(e) => { setUsername(e.target.value) }} />
+                    <input placeholder="password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                    <div className="btn btn-primary" onClick={handleLogin}>login</div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>
+            ) }
+        
 
 
         </div>
