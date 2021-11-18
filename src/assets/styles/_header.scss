@@ -1,0 +1,65 @@
+.header {
+    width: 70%;
+    height: 10%;
+    border: 1px solid red;
+    margin: 0 auto;
+    justify-content: space-between;
+
+    &-logo {
+            width: 20%;
+            border: 1px solid $darkBlue;           
+        
+        }
+    &-registration {
+       
+        &__links {
+                justify-content: space-around;
+               margin-right: 0rem;
+               padding: 0.25rem;
+        
+               
+            &__forgot  {
+                    margin-right: 1rem;
+                    
+                }
+             &__register  {
+                 
+                  }
+            
+            }
+        &__login {
+                justify-content: space-between;
+                padding: 0.25rem;
+                input,button {
+                    outline: 80%;
+                    padding: 0.45rem;
+                    border:none;
+                    background-color: $white;
+                    margin-right: 0.25rem;
+                    border-radius: 6px !important;
+                }
+                button {
+
+                }
+            }           
+        }
+}
+
+@media only screen and (max-width: 1024px) {
+    .header {
+        width: 100%;
+        nav {
+            margin : 0 5%;
+        }
+    }
+
+}
+@media only screen and (max-width: 640px) {
+    .header {
+        width: 99%;
+        nav {
+            margin : 0 5%;
+        }
+    }
+
+}
