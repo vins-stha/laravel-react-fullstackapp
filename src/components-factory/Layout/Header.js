@@ -29,6 +29,7 @@ export const Header = () => {
             cookies.set('LoggedInToken', true);
             window.location.href="/dashboard";
             setIsLoggedIn(true);
+
         })
         .catch((error)=>{
             console.log('error', error.response)
