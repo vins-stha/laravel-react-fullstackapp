@@ -104,3 +104,39 @@
   padding-bottom: 2.5rem;
   background-color: white;
 }
+
+.header {
+  width: 100%;
+  background-color: #2d314d;
+  min-height: 20%;
+  padding: 1rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header__left, .header__menuTexts {
+  font-size: 1rem;
+  color: white;
+}
+
+.header .menu {
+  border: 1px solid black;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 30%;
+}
+
+.header__menuTexts {
+  margin-left: 4rem;
+  border: 1px solid green;
+}
+
+.header__menuTexts a {
+  text-decoration: none;
+  color: white !important;
+}
