@@ -21,7 +21,6 @@ function App() {
           <Route path="/register" element={<Signup />} exact ></Route>
           <Route path="/dashboard" exact element= {<SecuredRoute renderThis={<ItemList/>}/>}></Route>
           <Route path="/test" exact element= {<SecuredRoute renderThis={<Test/>}/>}></Route>
-
         
         </Routes>
 

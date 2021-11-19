@@ -34,10 +34,7 @@ const Signup = () => {
             let result = axios.post(" http://127.0.0.1:8000/api/register", data, {
                 headers: {
                     "Content-type": "application/json",
-                    "Accept": "application/json",
-                    "Access-Control-Allow-Headers": "*",
-                    "Access-Control-Allow-Origin": "*"
-                },
+                              },
             })
                 .then((res) => {
                     if (res.status == 200) {
