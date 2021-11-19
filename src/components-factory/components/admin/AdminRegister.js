@@ -1,12 +1,13 @@
-import { Avatar, Grid, Paper, TextField, Button, FormControlLabel, Checkbox, AppBar, Toolbar, Typography } from '@material-ui/core'
+import { Avatar, Grid, Paper, TextField, Button, AppBar, Toolbar, Typography, Link } from '@material-ui/core'
 import { AddCircleOutlineRounded } from '@material-ui/icons'
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router';
 
 export const AdminRegister = () => {
-    const paperStyle = { width: '50%', padding: '0.25rem 1rem', textAlign: 'center', margin: '1rem auto' }
+    const paperStyle = { width: '50%', padding: '0.25rem 1rem', textAlign: 'center', margin: '1rem auto', color: "red" }
     const avatar = { backgroundColor: 'green' }
+    const loginTab = { padding: '0.25rem', marginLeft: '1rem', color: "green"}
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState();
@@ -14,7 +15,6 @@ export const AdminRegister = () => {
 
     const navigate = useNavigate()
 
-    // const token = document.head.querySelector('meta[name="csrf-token"]');
 
     function handleFormSubmit(e) {
         e.preventDefault();
@@ -23,14 +23,11 @@ export const AdminRegister = () => {
                 email,
                 password
             }
+            let result = axios.post("http://127.0.0.1:8000/admin/register", data, {
+                headers: {
+                    "Content-type": "application/json",
+                },
 
-            let result = axios.post(" http://127.0.0.1:8000/api/admin/register", data, {
-                // headers: {
-                //     "Content-type": "application/json",
-                //     "Accept": "application/json",
-                //     "Access-Control-Allow-Headers": "*",
-                //     "Access-Control-Allow-Origin": "*"
-                // },
             })
                 .then((res) => {
                     if (res.status == 200) {
@@ -42,10 +39,10 @@ export const AdminRegister = () => {
                     }
                 })
                 .catch((error) => {
-                    console.log('Error=>', error);
+                    console.log('Error=>', error.request);
+                    console.log('status=>', error.response);
 
                 });
-
         }
 
     }
@@ -93,6 +90,7 @@ export const AdminRegister = () => {
                         onChange={(e) => { setRepassword(e.target.value); }} />
 
                     <Button className="register" type="submit" variant='contained'>Register</Button>
+                    <Link href="/admin/login" style={loginTab} type="submit" variant='contained'>Already registred? Login here</Link>
 
 
                 </form>

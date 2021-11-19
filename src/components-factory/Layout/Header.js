@@ -21,8 +21,9 @@ export const Header = () => {
         e.preventDefault();
         console.log('data=', data)
         let result = axios.post("http://127.0.0.1:8000/api/login", data, {
-
-        })
+            headers: {
+            "Content-type": "application/json",
+           }},)
         .then((res)=>{
             console.log('res=>',res);
             cookie.set('isLoggedInToken', true,{ path: '/' });
