@@ -1,37 +1,46 @@
 .header {
     width: 100%;
     background-color: $darkBlue;
-    min-height:20%;
+    min-height: 20%;
     padding: 1rem;
-    justify-content:space-between;
-    
+    justify-content: space-between;
+
     // welcome text
-    
-    &__left, &__menuTexts{
+
+    &__left,
+    &__menuTexts {
         font-size: 1rem;
         color: $white;
 
     }
+
     .menu {
-        border: 1px solid black;
         justify-content: space-evenly;
         align-items: center;
         width: 30%;
-        
-
 
     }
-    &__menuTexts {
-        margin-left: 4rem;
-        border: 1px solid green;
-        a {
-            text-decoration:none;
-            color: $white !important;
-            // &:hover {
-            //     color: $black !important;
-            // }
-        }
-    
 
+    &__menuTexts {
+        margin-left: 1rem;
+
+    }
+
+    a {
+        text-decoration: none;
+        color: $white !important;
+
+        &:hover {
+            color: $black !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 512px) {
+    .header {
+        flex-direction: column;
+        flex: 1;
+        border:2px solid green;
+        font-size:0.7rem;
     }
 }

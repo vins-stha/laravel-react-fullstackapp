@@ -34,14 +34,14 @@ export const Login = () => {
         })
             .then((res) => {
 
-                cookie.set('isLoggedInToken', true, { path: '/' });
+                cookie.set('isAdminLoggedIn', true, { path: '/' });
                 cookie.set('isAdmin', true, { path: '/' });
-
+                console.log(res)
                 navigate('/admin/dashboard');
 
             })
             .catch((error) => {
-                console.log('error', error.response)
+                console.log('error', error.response, error)
             })
 
     }

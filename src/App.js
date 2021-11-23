@@ -9,6 +9,7 @@ import { SecuredRoute } from './components-factory/components/SecuredRoute';
 import { Login } from './components-factory/components/admin/Login';
 import { AdminRegister } from './components-factory/components/admin/AdminRegister';
 import { AdminDashboard } from './components-factory/components/admin/AdminDashboard';
+import { ViewLists } from './components-factory/components/admin/ViewLists';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/admin/login" element={<Login />} exact ></Route>
         <Route path="/admin/register" element={<AdminRegister />} exact ></Route>
         <Route path="/admin/dashboard" element={<AdminDashboard />} exact ></Route>
+        {/* <Route path="/admin/list/{cat}" element={<ViewLists/>} exact/> */}
         </Routes>
       </BrowserRouter>
 

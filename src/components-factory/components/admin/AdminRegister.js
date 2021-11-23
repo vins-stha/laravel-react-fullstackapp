@@ -33,8 +33,8 @@ export const AdminRegister = () => {
                     if (res.status == 200) {
 
                         localStorage.setItem('user', JSON.stringify(data));
-                        console.log(res)
-                        // navigate('/dashboard');
+                        console.log('res==>',res)
+                        navigate('/admin/login');
 
                     }
                 })
