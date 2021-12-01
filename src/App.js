@@ -11,6 +11,7 @@ import { AdminRegister } from './components-factory/components/admin/AdminRegist
 import { AdminDashboard } from './components-factory/components/admin/AdminDashboard';
 import ViewLists from './components-factory/components/admin/ViewLists';
 import { EditItem } from './components-factory/components/admin/EditItem';
+import { Home } from './real-estate/pages/Home';
 
 function App() {
 
@@ -41,6 +42,8 @@ function App() {
         </Routes>
       </BrowserRouter>
 
+      {/* Real-estate-app */}
+      <Home/>
       <Footer></Footer>
     </div>
   );
