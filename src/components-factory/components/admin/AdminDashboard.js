@@ -16,7 +16,7 @@ export const AdminDashboard = () => {
     let isAdmin = cookies.get('isAdmin');
 
     useEffect(() => {
-
+        console.log('isLoggedIn=',isLoggedIn, 'isAdmin', isAdmin);
         if (isLoggedIn !== "true" || isAdmin !== "true") {
             (navigate('/admin/login'))
         };

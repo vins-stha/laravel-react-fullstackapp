@@ -178,6 +178,25 @@
   color: white;
 }
 
+.tableView {
+  width: 100%;
+  padding: 2rem;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.tableView td, .tableView th {
+  padding: 0.5rem 1rem;
+}
+
+.tableView table {
+  border: none !important;
+}
+
+.table > :not(caption) > * > * {
+  background-color: #2d314d !important;
+}
+
 .adminFormsElement {
   margin-left: 1rem;
   padding: 0.25rem;

@@ -63,13 +63,26 @@
 
     }
 
-
-   
 }
 
 
-.form {
-    
+.tableView {
+    width: 100%;
+    padding: 2rem;
+    border: 2px solid black;
+    text-align: center;
+
+    td,th {
+         padding: 0.5rem 1rem; 
+            
+        }
+        table { border:none !important;}
+
+
+}
+
+.table>:not(caption)>*>* {
+    background-color: #2d314d !important;
 }
 .adminFormsElement {
     margin-left: 1rem;
