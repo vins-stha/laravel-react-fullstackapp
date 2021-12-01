@@ -1,0 +1,51 @@
+.asset-home-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    width: 80%;
+    margin: 0 auto;
+   
+
+}
+.flex-banners {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    margin:2rem;
+    width: 45%;
+    border: 1px solid white;
+}
+.flex-banner-image {       
+    border:2px solid blue;
+    max-width: 100%;
+    
+}
+@media only screen and (min-width:1024px)
+{
+    .flex-banners {
+        width: 40%;
+    }    
+}
+
+
+@media only screen and (max-width:1024px)
+{
+    .flex-banners {
+        width: 100%;
+    }    
+}
+
+
+@media only screen and (max-width:512px)
+{
+    .flex-banners {
+        width: 100%;
+    }
+    .flex-banner-image {
+        padding: 0 0.25rem;
+    }
+    
+}
