@@ -2,8 +2,7 @@ import React, { useState, setState, useEffect } from 'react'
 import '../../assets/styles/styles.css';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-import Cookies from 'universal-cookie';
-
+import Cookies from 'universal-cookie'
 
  const cookie = new Cookies();
 

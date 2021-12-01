@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router'
 import axios from 'axios';
-import Cookies from 'universal-cookie'
+import Cookies from 'universal-cookie';
 import { AdminDashboard } from './AdminDashboard';
 import {
     Button,
@@ -14,7 +14,7 @@ import {
     Link,
 } from "@material-ui/core";
 
-const cookie = new Cookies();
+const cookies = new Cookies();
 export const Login = () => {
     const [username, setUsername] = useState([]);
     const [password, setPassword] = useState([]);
@@ -34,9 +34,10 @@ export const Login = () => {
         })
             .then((res) => {
 
-                cookie.set('isAdminLoggedIn', true, { path: '/' });
-                cookie.set('isAdmin', true, { path: '/' });
-                console.log(res)
+                cookies.set('isAdminLoggedIn', true, { path: '/' });
+                cookies.set('isAdmin', true, { path: '/' });
+                // console.log('Admin reques=>',res, cookies.get('isAdminLoggedIn'), cookies.get('isAdmin'))
+
                 navigate('/admin/dashboard');
 
             })
@@ -45,6 +46,7 @@ export const Login = () => {
             })
 
     }
+
 
     return (
         <div >
