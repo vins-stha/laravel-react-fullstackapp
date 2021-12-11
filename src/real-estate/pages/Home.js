@@ -1,28 +1,23 @@
 import React, { useState } from 'react';
 import '../assets/asset_home.css';
-import axios from 'axios'
+import {useNavigate} from 'react-router'
 
 
 export const Home = () => {
     const [buttonType, setButtonType] = useState('');
+    const navigate = useNavigate()
+
     const Banner_item = (props) => {
         const { url, title, subTitle, buttonText, imgURL, altText, type } = props
 
         function handleClickExplore(type) {
-
-            const response = axios.get('https://bayut.p.rapidapi.com/auto-complete', {
-                headers: {
-                    'x-rapidapi-host': 'bayut.p.rapidapi.com',
-                    'x-rapidapi-key': '68363cbedamsh298a37b557ef006p1bd021jsnfd989c7c286c'
+            navigate("/real-estate/list", {
+                state:
+                {
+                    type: type,
+                   
                 }
-
             })
-                .then((res) => {
-                    console.log(res.data)
-                })
-                .catch((error) => {
-                    console.log('Error ', error.response)
-                })
         }
 
         return (

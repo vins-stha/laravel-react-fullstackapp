@@ -1,0 +1,76 @@
+.homeLists-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+     align-items: flex-start;
+
+}
+
+.listItem-card{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 27%;
+    margin:2rem;
+    border: 2px solid white; 
+    height: 25rem; 
+   
+}
+
+.listItem-image {       
+    max-height: 250px;
+    max-width: 100%;
+    height: 16rem;
+    
+}
+
+.img-title {
+    margin-top:1rem;
+    padding: 0.2rem;
+    align-content: center;
+    font-weight: 500;   
+    font-size: 1rem;
+}
+.home-props-icons {
+    align-content:space-around;
+    padding: 0.25rem;
+    font-weight: 500;
+}
+.icons-margin {
+    margin: 0 1rem 0 0.3rem!important;
+    color: blue;
+}
+.home-price {
+    color:greenyellow;
+}
+@media only screen and (min-width:1024px)
+{
+    .listItem {
+        width: 27%;
+    }    
+}
+
+
+@media only screen and (max-width:1024px)
+{
+    .listItem {
+        width: 100%;
+    } 
+    .listItem-image {       
+        height: 10rem;
+        
+    }
+       
+}
+
+
+@media only screen and (max-width:512px)
+{
+    .listItem {
+        width: 100%;
+    }
+    .listItem-image {
+        padding: 0 0.25rem;
+    }
+    
+}
