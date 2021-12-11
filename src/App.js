@@ -12,6 +12,9 @@ import { AdminDashboard } from './components-factory/components/admin/AdminDashb
 import ViewLists from './components-factory/components/admin/ViewLists';
 import { EditItem } from './components-factory/components/admin/EditItem';
 import { Home } from './real-estate/pages/Home';
+import Homelisting from './real-estate/pages/Homelisting';
+import DetailView from './real-estate/pages/DetailView';
+import { Search } from './real-estate/pages/Search';
 
 function App() {
 
@@ -43,7 +46,18 @@ function App() {
       </BrowserRouter>
 
       {/* Real-estate-app */}
-      <Home/>
+      <BrowserRouter>
+    
+      <Routes>
+      <Route path="/real-estate/" element={<Home/>} />
+        <Route path="/real-estate/list" element={<Homelisting/>} />
+        <Route path="/real-estate/detail" element={<DetailView/>} />
+        <Route path="/real-estate/search" element={<Search/>} />
+
+      </Routes>
+      </BrowserRouter>
+     
+
       <Footer></Footer>
     </div>
   );
