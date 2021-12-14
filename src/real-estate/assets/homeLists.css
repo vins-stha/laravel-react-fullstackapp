@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    width: 27%;
+    width: 25%;
     margin:2rem;
     border: 2px solid white; 
     height: 25rem; 
@@ -46,7 +46,7 @@
 @media only screen and (min-width:1024px)
 {
     .listItem {
-        width: 27%;
+        width: 25%;
     }    
 }
 
@@ -57,8 +57,12 @@
         width: 100%;
     } 
     .listItem-image {       
-        height: 10rem;
+        /* height: 10rem; */
         
+    }
+    .listItem-card{       
+        width: 40%;        
+       
     }
        
 }
@@ -71,6 +75,11 @@
     }
     .listItem-image {
         padding: 0 0.25rem;
+        height: auto;
+    }
+    .listItem-card{       
+        width: 80%;        
+       
     }
     
 }

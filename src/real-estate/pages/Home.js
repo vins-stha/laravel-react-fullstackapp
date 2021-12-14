@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import '../assets/asset_home.css';
-import {useNavigate} from 'react-router'
-
+import { useNavigate } from 'react-router'
 
 export const Home = () => {
     const [buttonType, setButtonType] = useState('');
@@ -14,8 +13,8 @@ export const Home = () => {
             navigate("/real-estate/list", {
                 state:
                 {
-                    type: type,
-                   
+                    type: type === 'Sale' ? 'for-sale' : 'for-rent',
+
                 }
             })
         }
@@ -30,9 +29,10 @@ export const Home = () => {
         )
 
     }
+
     return (
         <div>
-            <h1>Real estate home page</h1>
+           
             <div className="asset-home-container">
                 <Banner_item
                     url=""

@@ -1,53 +1,56 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
-import axios from 'axios'
 import '../assets/homeLists.css';
 import { Property } from './../components/Property';
-
+import APICall from './../components/APICall';
 
 export default function Homelisting(props) {
 
     const { state } = useLocation()
+
     const [properties, setProperties] = useState([])
 
+    const url = `${process.env.REACT_APP_REAL_ESTATE_BASE_URL}` + `properties/list`
+    const data = {
+        params:
+        {
+            purpose: state.type,
+            locationExternalIDs: '5002,6020',
+            hitsPerPage: '15',
+            rentFrequency: state === 'for-rent' ? 'monthly' : ''
+
+        }
+    }
+
+    const queries = {
+        url: url,
+        data: data
+    }
+
     useEffect(() => {
-        const response = axios.get('https://bayut.p.rapidapi.com/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=9&rentFrequency=monthly', {
-            headers: {
-                'x-rapidapi-host': 'bayut.p.rapidapi.com',
-                'x-rapidapi-key': '99fbc44994mshd8cdd0cd094be9bp13e297jsnc3dc21593e8e'
-            }
 
-        })
+        APICall(queries)
             .then((res) => {
-                console.log(res.data.hits.length);
-                // ((res.data.hits).length) ? setProperties(res.data):setProperties([]);
-                setProperties(res.data.hits);
-                // console.log('properties', properties)
-
+                res.hits.length > 0 ? setProperties(res.hits) : setProperties()
             })
-            .catch((error) => {
-                console.log('Error ', error.response)
-            })
+            .catch((err) => { console.log(err) })
 
+    },[])
 
-    }, [])
-
-   const home = properties.map((property) => {
-       console.log('here props =', property)
-       return(
-<Property attrs={property} key={property.id}/>
-       )
-       
-
-   })
+    const home = properties.map((property) => {
+        return (
+            <Property attrs={property} key={property.id} />
+        )
+    })
 
     return (
         <div>
-                <div className="homeLists-container">
-           
+            <h2>Properties {state.type}</h2>
+            <div className="homeLists-container">
+                
                 {home}
             </div>
-            
+
         </div>
     )
 }

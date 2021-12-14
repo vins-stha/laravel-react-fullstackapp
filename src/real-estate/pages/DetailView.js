@@ -1,82 +1,76 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
 import '../assets/detailed_view.css';
-import { FaBed, FaBath, FaWhatsapp, FaTwitter, FaMobile, FaPhone, FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
+import { FaBed, FaBath, FaWhatsapp, FaMobile, FaPhone } from 'react-icons/fa';
 import { BsGridFill } from 'react-icons/bs';
-import millify from 'millify';
-import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu'
-import GalleryImages from '../components/ScrollImages';
-import { Testing } from '../components/Test';
-import SimpleImageSlider from "react-simple-image-slider";
 import Carousel from 'react-elastic-carousel'
-import {Map,GoogleApiWrapper} from 'google-maps-react'
-import {MapContainer} from '../components/MapContainer';
-
+import { MapContainer } from '../components/MapContainer';
+import APICall from './../components/APICall';
 
 
 export default function DetailView() {
     const { state } = useLocation()
     const [property, setProperty] = useState('');
     const [pics, setPics] = useState([])
-    const [amenities, setAmenities] = useState([])
     const [phones, setPhones] = useState([])
     const [lonLat, setLonLat] = useState([])
 
 
-    var state2 = "5563494"
+    const url = `${process.env.REACT_APP_REAL_ESTATE_BASE_URL}properties/detail`
 
-    console.log('retrieving for...', state2)
-
-    const url = 'https://bayut.p.rapidapi.com/properties/detail'
-
+    const data = {
+        params: {
+            externalID: state === undefined ? '4937770' : state
+        }
+    }
+    const queries = {
+        url: url,
+        data: data
+    }
     useEffect(() => {
-        const results = axios.get(url, {
-            headers: {
-                'x-rapidapi-host': 'bayut.p.rapidapi.com',
-                'x-rapidapi-key': '9cf678772emsh0652fb3b5a2f7f9p1fc34cjsnbbffea176c0a'
-
-            },
-            params: { externalID: state2 }
-        })
+        console.log(state)
+        APICall(queries)
             .then((res) => {
-                console.log(res.data)
-                insertResults(res.data)
+                setProperty(res);
             })
-            .catch((error) => {
-                console.log('Error=>', error, error.response)
-            })
+
+            .catch((err) => { console.log(err) })
     }, [])
 
-    const insertResults = (results) => {
-        setProperty(results)
-        setAmenities(results.amenities)
-        setPhones(results.phoneNumber)
-        results.geography !== null ? setLonLat(results.geography):setLonLat('')
-        results.photos.length > 0 ? setPics(results.photos) : setPics([])
+    useEffect(() => {
+      
+        property.geography !== undefined ? setLonLat(property.geography) : setLonLat('')
+        property.photos !== undefined ? setPics(property.photos) : setPics([])
+        property.phoneNumber !== undefined ? setPhones(property.phoneNumber) : setPhones([])
 
-    }
+    }, [property])
 
     var imgList = []
     const imageList = pics.map((pic, id) => {
+        
         imgList.push(pic.url)
         return imgList
     })
     return (
+
         <>
-            {property !== null ? (
+            {property !== undefined ? (
                 <div className="detailView-container">
                     <div className="prop-title">{property.title}</div>
+
                     <div className="bannerContainer">
 
-                        {pics.length > 0 &&
+                        {pics !== undefined && pics.length > 0 &&
                             (
                                 <>
                                     <div className="flex">
 
                                         <Carousel>
                                             {
-                                                imageList.map((image, id) => <img className="scrollingImage" src={image[id]} />)
+                                                imageList.map((image, id) => <img className="scrollingImage" src={image[id]} 
+                                                alt={image[id]}
+                                                key ={image[id]}
+                                                />)
                                             }
                                         </Carousel>
 
@@ -85,17 +79,19 @@ export default function DetailView() {
                                 </>
                             )}
                     </div>
+
                     <div className="features-container">
                         <div className="prop-amenities flex">
-                            {amenities.length > 0 && (
+                            {property.amenities !== undefined && (property.amenities).length > 0 && (
                                 <>
-                                    {amenities.map((amenity, id) => {
+
+                                    {(property.amenities).map((amenity, id) => {
 
                                         return (
                                             <>
                                                 <div key={id} className="features features-cat">{amenity.text}</div>
                                                 {amenity.amenities.map((am, id) => {
-                                                    return (<div className="features">{am.text}</div>)
+                                                    return (<div className="features" key={id}>{am.text}</div>)
 
                                                 })}
                                             </>
@@ -105,16 +101,14 @@ export default function DetailView() {
                                 </>
                             )}
 
-                            <div className="features">test</div>
-                            <div className="features">test2</div>
                         </div>
                         <div className="prop-icons flex">
                             {property.rooms}<FaBed className="icons-margin" /> {property.baths}<FaBath className="icons-margin" />
-                            {property.area !== null &&
+                            {property.area !== undefined &&
                                 (
                                     <>
-                                        {/* millify(property.area) */}
-                                        {property.area}
+                                        {(property.area).toFixed(3)} sqft
+
                                         <BsGridFill className="icons-margin" />
                                     </>
 
@@ -126,27 +120,27 @@ export default function DetailView() {
                     </div>
 
                     <div className="property-details ">
-
-                        <div className="heading">Agency:  <span className="info">XXYYZZ sq</span> </div>
+                     
                         <div className="heading">Furnished : <span className="info"> {property.furnishingStatus}</span> </div>
-                        <div className="heading">Price :  <span className="info"> {property.price}</span> </div>
+                        <div className="heading">Price :  <span className="info"> {property.price} AED</span> </div>
                         <div className="heading">Reference Number  :  <span className="info"> {property.referenceNumber}</span> </div>
-                        <div className="heading">Contact Person/s:  <span className="info"> </span> XXYYZZ</div>
+                        <div className="heading">Contact Person/s:  <span className="info">{property.contactName} </span> </div>
                         <div className="heading">Contact Detail/s:  <span className="info"> </span>
 
                             <span className="info">
                                 {
-                                    property.agency !== null &&
+                                    property.agency !== undefined &&
                                     (
                                         <>
-
+                                            {property.agency.name}
                                         </>
                                     )
                                 }
+
                             </span>
 
                             <p className="info">
-                                {phones !== null &&
+                                {phones !== undefined &&
                                     (
                                         <>
                                             {phones.mobile}
@@ -167,15 +161,16 @@ export default function DetailView() {
 
                         </div>
                     </div>
+
                     <div className="geoLocation">
-                        {property.geography !== null &&(
+                        {property.geography !== undefined && (
                             <>
-                            <h3>{lonLat.lat}</h3>
-                          <MapContainer/>
-   
+                                <h3>{lonLat.lat}</h3>
+                                <MapContainer />
+
                             </>
                         )}
-                    
+
                     </div>
 
                 </div>
