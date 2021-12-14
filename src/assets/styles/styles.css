@@ -11,6 +11,16 @@
 .header-logo {
   width: 20%;
   border: 1px solid #2d314d;
+  color: aqua;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.header-home-menu a {
+  color: aqua;
+  padding: 0.25rem;
+  margin-right: 0.25rem;
+  text-decoration: none;
 }
 
 .header-registration__links {
